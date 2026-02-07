@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>돌잔치 초대장</title>
+  <meta name="description" content="소중한 첫 생일에 초대합니다" />
+  <style>
+    :root {
+      --bg: #fff7f2;
+      --card: #ffffff;
+      --accent: #ff8a65;
+      --text: #333333;
+      --muted: #777777;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 16px; }
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+    .hero {
+      padding: 28px 20px 16px;
+      text-align: center;
+      background: radial-gradient(1200px 200px at 50% -20%, #ffe0d6, #fff);
+    }
+    .badge {
+      display: inline-block; padding: 6px 12px; border-radius: 999px;
+      background: #fff1ec; color: var(--accent); font-weight: 600; font-size: 12px;
+    }
+    h1 { margin: 14px 0 8px; font-size: 28px; letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); }
+    .photo {
+      width: 100%; aspect-ratio: 4 / 3; background: #f2f2f2;
+      display: grid; place-items: center; color: #aaa;
+    }
+    .section { padding: 20px; }
+    .section h2 { font-size: 18px; margin: 0 0 10px; }
+    .kv { display: grid; grid-template-columns: 80px 1fr; gap: 8px 12px; }
+    .kv div { padding: 6px 0; }
+    .label { color: var(--muted); }
+    .divider { height: 1px; background: #eee; margin: 0 20px; }
+    .cta {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .btn {
+      flex: 1 1 160px;
+      padding: 14px 16px; border-radius: 14px; border: 1px solid #eee;
+      background: #fff; cursor: pointer; font-weight: 600;
+    }
+    .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn.secondary { background: #fff7f2; color: var(--accent); }
+    footer { text-align: center; padding: 16px; color: var(--muted); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="hero">
+        <span class="badge">첫 번째 생일</span>
+        <h1>OO의 돌잔치에 초대합니다</h1>
+        <p class="subtitle">사랑으로 자라온 첫 1년, 함께 축하해 주세요</p>
+      </div>
+
+      <div class="photo">
+        아기 사진 영역 (여기에 사진 넣기)
+      </div>
+
+      <div class="section">
+        <h2>행사 안내</h2>
+        <div class="kv">
+          <div class="label">일시</div><div>2026년 3월 15일 (일) 오후 12시</div>
+          <div class="label">장소</div><div>○○컨벤션 3층 라벤더홀</div>
+          <div class="label">주소</div><div>경기도 ○○시 ○○로 123</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <h2>오시는 길</h2>
+        <p class="subtitle">아래 버튼을 누르면 지도 앱이 열립니다.</p>
+        <div class="cta">
+          <a class="btn secondary" href="https://map.kakao.com/" target="_blank" rel="noreferrer">카카오맵</a>
+          <a class="btn secondary" href="https://map.naver.com/" target="_blank" rel="noreferrer">네이버지도</a>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <h2>참석 여부</h2>
+        <p class="subtitle">준비를 위해 참석 여부를 알려주시면 감사하겠습니다.</p>
+        <div class="cta">
+          <!-- 구글폼/네이버폼 링크로 교체 -->
+          <a class="btn primary" href="https://forms.gle/" target="_blank" rel="noreferrer">참석 여부 남기기</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © 우리 가족의 소중한 하루
+    </footer>
+  </div>
+</body>
+</html>
