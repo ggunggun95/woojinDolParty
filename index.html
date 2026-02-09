@@ -25,29 +25,29 @@ body {
   color:var(--dark);
 }
 
-/* 스크롤 스냅 */
+/* ===== Scroll Snap ===== */
 .snap-container {
   height:100vh;
   overflow-y:auto;
   scroll-snap-type:y mandatory;
+  scroll-behavior:smooth;
 }
 
 section {
   scroll-snap-align:start;
   min-height:100vh;
-  padding:60px 20px;
   display:flex;
   align-items:center;
   justify-content:center;
+  padding:60px 20px;
 }
 
 .inner {
   width:100%;
   max-width:680px;
-  margin:0 auto;
 }
 
-/* 히어로 */
+/* ===== Hero ===== */
 .hero {
   text-align:center;
 }
@@ -63,26 +63,91 @@ section {
   margin-top:30px;
 }
 
-/* 슬라이드 */
+/* ===== Slider ===== */
 .slider-section {
   padding:0;
+  position:relative;
 }
+
 .slider {
-  width:100%;
-  height:100vh;
   display:flex;
+  height:100vh;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
+  touch-action:pan-y;
+  overscroll-behavior:contain;
 }
+
+.slider::-webkit-scrollbar { display:none; }
+
 .slide {
   min-width:100%;
   height:100vh;
   scroll-snap-align:center;
+  position:relative;
   background-size:cover;
   background-position:center;
 }
 
-/* 카드 */
+/* overlay */
+.slide::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.5));
+}
+
+.slide-text {
+  position:absolute;
+  bottom:80px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#fff;
+  text-align:center;
+  z-index:2;
+  font-size:20px;
+  line-height:1.8;
+}
+
+/* arrows */
+.arrow {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:28px;
+  color:#fff;
+  background:rgba(0,0,0,.35);
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:3;
+  cursor:pointer;
+}
+.arrow.left { left:16px; }
+.arrow.right { right:16px; }
+
+/* indicators */
+.indicators {
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  z-index:3;
+}
+.dot {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,.5);
+}
+.dot.active { background:#fff; }
+
+/* ===== Card ===== */
 .card {
   background:#fff;
   padding:50px 30px;
@@ -98,34 +163,6 @@ section {
 .info-row:last-child{border-bottom:none;}
 .label { font-weight:700; color:var(--brown); }
 
-/* 메시지 */
-.message {
-  text-align:center;
-  font-size:20px;
-  line-height:2;
-}
-
-/* 계좌 */
-.account-row {
-  display:grid;
-  grid-template-columns:60px 1fr auto;
-  gap:10px;
-  padding:14px 0;
-  border-bottom:1px solid rgba(0,0,0,.1);
-}
-.copy-btn {
-  border:1px solid var(--terracotta);
-  background:none;
-  color:var(--terracotta);
-  padding:6px 10px;
-}
-
-/* 마무리 */
-.closing {
-  text-align:center;
-  line-height:2;
-}
-
 @media(max-width:640px){
   .hero-name{font-size:42px;}
 }
@@ -136,7 +173,7 @@ section {
 
 <div class="snap-container">
 
-<!-- 히어로 -->
+<!-- HERO -->
 <section>
   <div class="inner hero">
     <p>First Birthday</p>
@@ -146,16 +183,27 @@ section {
   </div>
 </section>
 
-<!-- 아기 사진 슬라이드 -->
+<!-- SLIDER -->
 <section class="slider-section">
-  <div class="slider">
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1604079628040-94301bb21b91')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1546015720-b8b30df5aa27')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1519689680058-324335c77eba')"></div>
+  <div class="slider" id="slider">
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1604079628040-94301bb21b91')">
+      <div class="slide-text">태어난 지 100일<br>웃음이 많아졌어요</div>
+    </div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1546015720-b8b30df5aa27')">
+      <div class="slide-text">처음 뒤집기에 성공한 날</div>
+    </div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1519689680058-324335c77eba')">
+      <div class="slide-text">사랑 속에서 자란 첫 1년</div>
+    </div>
   </div>
+
+  <div class="arrow left" onclick="moveSlide(-1)">‹</div>
+  <div class="arrow right" onclick="moveSlide(1)">›</div>
+
+  <div class="indicators" id="dots"></div>
 </section>
 
-<!-- 행사 정보 -->
+<!-- INFO -->
 <section>
   <div class="inner card">
     <div class="info-row">
@@ -166,55 +214,44 @@ section {
       <div class="label">장소</div>
       <div>별내 차림</div>
     </div>
-    <div class="info-row">
-      <div class="label">주소</div>
-      <div>경기 남양주시 두물로 19<br>메가박스 5층</div>
-    </div>
-  </div>
-</section>
-
-<!-- 감사 메시지 -->
-<section>
-  <div class="inner card message">
-    작은 손으로 자라온 첫 1년<br>
-    우진이의 첫 생일에<br>
-    함께해 주시면 감사하겠습니다
-  </div>
-</section>
-
-<!-- 계좌 -->
-<section>
-  <div class="inner card">
-    <div class="account-row">
-      <strong>아빠</strong>
-      <span>국민 123-45-678901</span>
-      <button class="copy-btn" data-copy="국민 123-45-678901">복사</button>
-    </div>
-    <div class="account-row">
-      <strong>엄마</strong>
-      <span>신한 110-234-567890</span>
-      <button class="copy-btn" data-copy="신한 110-234-567890">복사</button>
-    </div>
-  </div>
-</section>
-
-<!-- 마무리 -->
-<section>
-  <div class="inner closing">
-    사랑으로 자라온 첫 1년<br>
-    함께해 주셔서 감사합니다<br><br>
-    아빠 이현건 · 엄마 원소희
   </div>
 </section>
 
 </div>
 
 <script>
-document.querySelectorAll('.copy-btn').forEach(btn=>{
-  btn.onclick=()=>{
-    navigator.clipboard.writeText(btn.dataset.copy);
-    alert('복사되었습니다');
-  }
+const slider = document.getElementById('slider');
+const slides = document.querySelectorAll('.slide');
+const dotsWrap = document.getElementById('dots');
+let index = 0;
+
+/* dots */
+slides.forEach((_,i)=>{
+  const d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  dotsWrap.appendChild(d);
+});
+const dots=document.querySelectorAll('.dot');
+
+function update(){
+  slider.scrollTo({left:slider.clientWidth*index,behavior:'smooth'});
+  dots.forEach(d=>d.classList.remove('active'));
+  dots[index].classList.add('active');
+}
+
+function moveSlide(dir){
+  index=(index+dir+slides.length)%slides.length;
+  update();
+}
+
+/* auto play */
+setInterval(()=>moveSlide(1),4500);
+
+/* sync on manual scroll */
+slider.addEventListener('scroll',()=>{
+  index=Math.round(slider.scrollLeft/slider.clientWidth);
+  dots.forEach(d=>d.classList.remove('active'));
+  dots[index]?.classList.add('active');
 });
 </script>
 
