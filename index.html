@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>이우진 돌잔치 초대장</title>
-<meta name="robots" content="noindex, nofollow">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,19 +17,32 @@
   --dark:#3d3327;
 }
 
+/* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box;}
+
+html, body{
+  height:100%;
+}
 
 body{
   font-family:'Gowun Batang','Nanum Myeongjo',serif;
   background:var(--cream);
   color:var(--dark);
-  scroll-snap-type:y mandatory;
-  overflow-y:scroll;
+  overflow:hidden;
 }
 
+/* ===== SCROLL CONTAINER ===== */
+.scroll-container{
+  height:100vh;
+  overflow-y:scroll;
+  scroll-snap-type:y mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* ===== SECTION ===== */
 section{
+  height:100vh;
   scroll-snap-align:start;
-  min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -41,21 +53,18 @@ section{
 .hero{
   text-align:center;
 }
-
 .hero-name{
   font-size:56px;
   font-weight:800;
   opacity:0;
-  transform:translateY(20px);
-  animation:fadeUp 1.4s ease forwards;
+  transform:translateY(24px);
+  animation:fadeUp 1.2s ease forwards;
 }
-
 .hero-date{
   margin-top:24px;
   font-size:20px;
   color:var(--terracotta);
 }
-
 @keyframes fadeUp{
   to{opacity:1;transform:none;}
 }
@@ -67,13 +76,13 @@ section{
 
 .baby-slider{
   width:100%;
-  height:100vh;
-  display:flex;
+  height:100%;
   overflow:hidden;
 }
 
 .baby-track{
   display:flex;
+  width:100%;
   height:100%;
   transition:transform 1s cubic-bezier(.77,0,.175,1);
 }
@@ -87,7 +96,6 @@ section{
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center;
 }
 
 /* ===== CARD ===== */
@@ -124,12 +132,10 @@ section{
   padding:14px 0;
   border-bottom:1px solid rgba(0,0,0,.1);
 }
-
 .account-info{
   text-align:right;
-  font-family:system-ui, sans-serif;
+  font-family:system-ui,sans-serif;
 }
-
 .copy-btn{
   border:1px solid var(--terracotta);
   background:none;
@@ -148,93 +154,103 @@ section{
 
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <h1 class="hero-name">이우진</h1>
-    <div class="hero-date">2026. 04. 04 · SAT</div>
-  </div>
-</section>
+<div class="scroll-container">
 
-<!-- BABY PHOTO -->
-<section class="baby-section">
-  <div class="baby-slider">
-    <div class="baby-track" id="babyTrack">
-      <div class="baby-slide"><img src="img/baby1.jpg"></div>
-      <div class="baby-slide"><img src="img/baby2.jpg"></div>
-      <div class="baby-slide"><img src="img/baby3.jpg"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1 class="hero-name">이우진</h1>
+      <div class="hero-date">2026. 04. 04 · SAT</div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- MESSAGE -->
-<section>
-  <div class="card">
-    <p>
-      작은 손으로 채워온 시간 속에서<br>
-      우진이의 첫 생일을 맞이했습니다<br><br>
-      함께해 주시면 감사하겠습니다
-    </p>
-  </div>
-</section>
+  <!-- BABY PHOTO SLIDER -->
+  <section class="baby-section">
+    <div class="baby-slider">
+      <div class="baby-track" id="babyTrack">
+        <div class="baby-slide">
+          <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=1600">
+        </div>
+        <div class="baby-slide">
+          <img src="https://images.unsplash.com/photo-1546015720-b8b30df5aa27?q=80&w=1600">
+        </div>
+        <div class="baby-slide">
+          <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=1600">
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- INFO -->
-<section>
-  <div class="card">
-    <div class="info-row">
-      <div class="info-label">일시</div>
-      <div>2026년 4월 4일 토요일 · 오전 11시</div>
+  <!-- MESSAGE -->
+  <section>
+    <div class="card">
+      <p>
+        작은 손으로 채워온 시간 속에서<br>
+        우진이의 첫 생일을 맞이했습니다<br><br>
+        함께해 주시면 감사하겠습니다
+      </p>
     </div>
-    <div class="info-row">
-      <div class="info-label">장소</div>
-      <div>별내 차림 (메가박스 5층)</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ACCOUNT -->
-<section>
-  <div class="card">
-    <div class="account-row">
-      <span>아빠</span>
-      <span class="account-info">3333-15-9625203</span>
-      <button class="copy-btn" data-copy="3333-15-9625203">복사</button>
+  <!-- INFO -->
+  <section>
+    <div class="card">
+      <div class="info-row">
+        <div class="info-label">일시</div>
+        <div>2026년 4월 4일 토요일 · 오전 11시</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">장소</div>
+        <div>별내 차림 (메가박스 5층)</div>
+      </div>
     </div>
-    <div class="account-row">
-      <span>엄마</span>
-      <span class="account-info">0000-00-000000</span>
-      <button class="copy-btn" data-copy="0000-00-000000">복사</button>
-    </div>
-    <p style="margin-top:24px;font-size:14px;color:var(--brown)">
-      전해주시는 마음, 소중히 간직하겠습니다
-    </p>
-  </div>
-</section>
+  </section>
 
-<!-- CLOSING -->
-<section>
-  <div class="card">
-    <p>
-      사랑으로 자라온 첫 1년<br>
-      함께 기뻐해 주셔서 감사합니다
-    </p>
-    <p style="margin-top:30px;font-weight:700">
-      아빠 이현건 · 엄마 원소희 올림
-    </p>
-  </div>
-</section>
+  <!-- ACCOUNT -->
+  <section>
+    <div class="card">
+      <div class="account-row">
+        <span>아빠</span>
+        <span class="account-info">3333-15-9625203</span>
+        <button class="copy-btn" data-copy="3333-15-9625203">복사</button>
+      </div>
+      <div class="account-row">
+        <span>엄마</span>
+        <span class="account-info">0000-00-000000</span>
+        <button class="copy-btn" data-copy="0000-00-000000">복사</button>
+      </div>
+      <p style="margin-top:24px;font-size:14px;color:var(--brown)">
+        전해주시는 마음, 소중히 간직하겠습니다
+      </p>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section>
+    <div class="card">
+      <p>
+        사랑으로 자라온 첫 1년<br>
+        함께 기뻐해 주셔서 감사합니다
+      </p>
+      <p style="margin-top:30px;font-weight:700">
+        아빠 이현건 · 엄마 원소희 올림
+      </p>
+    </div>
+  </section>
+
+</div>
 
 <script>
-/* BABY SLIDER */
+/* SLIDER */
 const track = document.getElementById('babyTrack');
-let idx = 0;
+let index = 0;
 let startX = 0;
 
-setInterval(()=>move(1),4000);
+setInterval(()=>move(1),4500);
 
 function move(step){
-  idx = (idx + step + track.children.length) % track.children.length;
-  track.style.transform = `translateX(-${idx*100}%)`;
+  index = (index + step + track.children.length) % track.children.length;
+  track.style.transform = `translateX(-${index*100}%)`;
 }
 
 track.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
