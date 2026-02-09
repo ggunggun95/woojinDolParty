@@ -18,157 +18,89 @@
 
   <style>
     :root {
-      --cream: #faf8f3;
-      --sand: #e8dcc8;
-      --terracotta: #d4a574;
-      --brown: #8b7355;
-      --dark: #3d3327;
-      --accent: #c9a882;
+      --cream:#faf8f3;
+      --sand:#e8dcc8;
+      --terracotta:#d4a574;
+      --brown:#8b7355;
+      --dark:#3d3327;
+      --accent:#c9a882;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      font-family: 'Gowun Batang', 'Nanum Myeongjo', serif;
-      background: var(--cream);
-      color: var(--dark);
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
-
-    /* 배경 */
-    .bg-decoration {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    .bg-decoration::before,
-    .bg-decoration::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--sand) 0%, transparent 70%);
-    }
-
-    .bg-decoration::before {
-      width: 600px;
-      height: 600px;
-      top: -200px;
-      right: -200px;
-      animation: float 20s ease-in-out infinite;
-    }
-
-    .bg-decoration::after {
-      width: 400px;
-      height: 400px;
-      bottom: -100px;
-      left: -100px;
-      animation: float 25s ease-in-out infinite reverse;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0,0); }
-      50% { transform: translate(30px,-30px); }
+      font-family:'Gowun Batang','Nanum Myeongjo',serif;
+      background:var(--cream);
+      color:var(--dark);
+      line-height:1.8;
     }
 
     .container {
-      position: relative;
-      z-index: 1;
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 40px 20px;
+      max-width:680px;
+      margin:0 auto;
+      padding:40px 20px;
     }
 
     /* 히어로 */
-    .hero {
-      text-align: center;
-      padding: 60px 0;
-    }
-
+    .hero { text-align:center; padding:60px 0; }
     .hero-ornament {
-      width: 80px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
-      margin: 0 auto 30px;
+      width:80px; height:2px;
+      background:linear-gradient(90deg,transparent,var(--terracotta),transparent);
+      margin:0 auto 30px;
     }
-
     .hero-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      letter-spacing: 3px;
-      color: var(--brown);
-      margin-bottom: 20px;
+      font-family:'Cormorant Garamond',serif;
+      font-size:14px;
+      letter-spacing:3px;
+      color:var(--brown);
+      margin-bottom:20px;
     }
-
     .hero-name {
-      font-family: 'Nanum Myeongjo', serif;
-      font-size: 56px;
-      font-weight: 800;
-      margin-bottom: 16px;
+      font-family:'Nanum Myeongjo',serif;
+      font-size:56px;
+      font-weight:800;
+      margin-bottom:16px;
     }
-
-    .hero-message {
-      font-size: 18px;
-      color: var(--brown);
-    }
-
+    .hero-message { font-size:18px; color:var(--brown); }
     .hero-date {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
-      color: var(--terracotta);
-      margin-top: 30px;
+      font-family:'Cormorant Garamond',serif;
+      font-size:24px;
+      color:var(--terracotta);
+      margin-top:30px;
     }
 
     /* 카드 공통 */
-    .info-card,
-    .message-card {
-      background: white;
-      padding: 60px 40px;
-      margin: 60px 0;
-      box-shadow: 0 20px 60px rgba(61,51,39,0.08);
-      position: relative;
+    .card {
+      background:#fff;
+      padding:60px 40px;
+      margin:60px 0;
+      box-shadow:0 20px 60px rgba(61,51,39,.08);
+      position:relative;
     }
-
-    .info-card::before,
-    .message-card::before {
+    .card::before {
       content:'';
       position:absolute;
       top:0; left:0; right:0;
       height:3px;
-      background: linear-gradient(90deg,var(--terracotta),var(--accent),var(--terracotta));
+      background:linear-gradient(90deg,var(--terracotta),var(--accent),var(--terracotta));
     }
 
-    .info-title {
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
+    /* 초대 정보 */
     .info-row {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 20px;
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(212,165,116,.15);
+      display:grid;
+      grid-template-columns:100px 1fr;
+      gap:20px;
+      padding:16px 0;
+      border-bottom:1px solid rgba(212,165,116,.15);
     }
-
-    .info-row:last-child { border-bottom:none; }
-
-    .info-label { font-weight:700; color:var(--brown); }
+    .info-row:last-child{border-bottom:none;}
+    .info-label{font-weight:700;color:var(--brown);}
 
     .button-group {
       display:flex;
       gap:12px;
       margin-top:40px;
     }
-
     .btn {
       flex:1;
       padding:16px;
@@ -179,20 +111,18 @@
       font-weight:700;
     }
 
-    /* 메시지 카드 */
+    /* 메시지 */
     .message-divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
-      margin: 0 auto 40px;
+      width:60px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--terracotta),transparent);
+      margin:0 auto 40px;
     }
-
     .message-content {
       font-size:20px;
       line-height:2.2;
       text-align:center;
     }
-
     .message-sub {
       font-size:16px;
       color:var(--brown);
@@ -200,48 +130,40 @@
       margin-top:30px;
     }
 
-    /* 계좌 영역 */
+    /* 계좌 */
     .account-section {
-      margin: 80px 0 40px;
-      text-align: center;
-      color: var(--brown);
+      margin:80px 0 40px;
+      text-align:center;
+      color:var(--brown);
     }
-
     .account-title {
-      font-size: 15px;
-      letter-spacing: 1px;
-      margin-bottom: 24px;
-      font-weight: 700;
+      font-size:15px;
+      letter-spacing:1px;
+      margin-bottom:24px;
+      font-weight:700;
     }
-
     .account-list {
-      max-width: 420px;
-      margin: 0 auto;
+      max-width:420px;
+      margin:0 auto;
     }
-
     .account-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      font-size: 14px;
-      border-bottom: 1px solid rgba(139,115,85,0.15);
+      display:flex;
+      justify-content:space-between;
+      padding:12px 0;
+      font-size:14px;
+      border-bottom:1px solid rgba(139,115,85,.15);
+      cursor:pointer;
     }
-
-    .account-row:last-child {
-      border-bottom: none;
-    }
-
-    .account-name { font-weight:700; }
-
+    .account-row:last-child{border-bottom:none;}
+    .account-name{font-weight:700;}
     .account-info {
-      font-family: 'Cormorant Garamond', serif;
-      letter-spacing: .5px;
+      font-family:'Cormorant Garamond',serif;
+      letter-spacing:.5px;
     }
-
     .account-note {
-      margin-top: 24px;
-      font-size: 13px;
-      opacity: .8;
+      margin-top:22px;
+      font-size:13px;
+      opacity:.85;
     }
 
     /* 마무리 */
@@ -249,13 +171,11 @@
       text-align:center;
       padding:60px 20px;
     }
-
     .closing-message {
       font-size:18px;
       color:var(--brown);
       line-height:2;
     }
-
     .closing-name {
       margin-top:30px;
       font-weight:700;
@@ -264,15 +184,15 @@
     @media(max-width:640px){
       .hero-name{font-size:42px;}
       .button-group{flex-direction:column;}
-      .info-card,.message-card{padding:40px 24px;}
+      .card{padding:40px 24px;}
     }
   </style>
 </head>
 <body>
-<div class="bg-decoration"></div>
 
 <div class="container">
 
+  <!-- 히어로 -->
   <section class="hero">
     <div class="hero-ornament"></div>
     <div class="hero-subtitle">First Birthday</div>
@@ -282,8 +202,8 @@
     <div class="hero-date">2026. 04. 04. SAT</div>
   </section>
 
-  <section class="info-card">
-    <h2 class="info-title">초대합니다</h2>
+  <!-- 행사 정보 -->
+  <section class="card">
     <div class="info-row">
       <div class="info-label">일시</div>
       <div>2026년 4월 4일 토요일<br>오전 11시</div>
@@ -303,42 +223,45 @@
     </div>
   </section>
 
-  <section class="message-card">
+  <!-- 감사 메시지 -->
+  <section class="card">
     <div class="message-divider"></div>
     <p class="message-content">
       작은 손과 발로<br>
-      하루하루 성장해온 365일<br><br>
+      하루하루 자라온 시간 속에서<br><br>
       우진이의 첫 생일을<br>
-      함께 축하해 주세요
+      함께해 주시면 감사하겠습니다
     </p>
     <p class="message-sub">
-      바쁘신 중에도 자리 빛내주시는<br>
-      모든 분들께 감사드립니다
+      따뜻한 마음으로 축복해 주셔서 감사합니다
     </p>
   </section>
 
-  <!-- 계좌 안내 -->
+  <!-- 계좌 -->
   <section class="account-section">
-    <p class="account-title">마음 전하실 곳</p>
+    <p class="account-title">마음 전하실 곳 (터치 시 복사)</p>
+
     <div class="account-list">
-      <div class="account-row">
-        <span class="account-name">아버지</span>
-        <span class="account-info">국민은행 123-45-678901 · 이현건</span>
+      <div class="account-row" data-copy="국민 123-45-678901">
+        <span class="account-name">아빠</span>
+        <span class="account-info">국민 123-45-678901</span>
       </div>
-      <div class="account-row">
-        <span class="account-name">어머니</span>
-        <span class="account-info">신한은행 110-234-567890 · 원소희</span>
+      <div class="account-row" data-copy="신한 110-234-567890">
+        <span class="account-name">엄마</span>
+        <span class="account-info">신한 110-234-567890</span>
       </div>
     </div>
+
     <p class="account-note">
-      축하의 마음만으로도 충분히 감사드립니다
+      전해주시는 마음 감사히 잘 받겠습니다
     </p>
   </section>
 
+  <!-- 마무리 -->
   <section class="closing">
     <p class="closing-message">
       사랑으로 자라온 첫 1년<br>
-      함께 기뻐해 주시는 모든 분들께 감사드립니다
+      함께 기뻐해 주셔서 진심으로 감사합니다
     </p>
     <div class="closing-name">
       이우진의<br>
@@ -347,5 +270,18 @@
   </section>
 
 </div>
+
+<script>
+  // 계좌 복사
+  document.querySelectorAll('.account-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const text = row.dataset.copy;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('계좌번호가 복사되었습니다');
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
